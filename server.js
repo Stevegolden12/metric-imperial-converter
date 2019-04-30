@@ -9,6 +9,7 @@ const helmet = require('helmet')
 var apiRoutes = require('./routes/api.js');
 var fccTestingRoutes = require('./routes/fcctesting.js');
 var runner = require('./test-runner');
+var convertHandler = require('./controllers/convertHandler.js')
 
 var app = express();
 
@@ -28,6 +29,14 @@ app.route('/')
   .get(function (req, res) {
     res.sendFile(process.cwd() + '/views/index.html');
   });
+
+//Get number
+app.route('/api/convert')
+  .get(function (req, res) {
+    const qInput = req.query.input;
+    console.log(convertHandler.getNum())
+    res.send('TESTING')
+  })
 
 //For FCC testing purposes
 fccTestingRoutes(app);
