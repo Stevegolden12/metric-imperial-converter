@@ -7,23 +7,42 @@
 */
 
 function ConvertHandler() {
+  /*
+  this.chkInput = function (input) {
+    const regTest = /(^ [0 - 9]{ 1, })(\.?) ([0 - 9]{ 0,}) ([a - zA - z]{ 2, 3 })/gm
+    const chkResult = regTest.text(input)
+    console.log(chkResult)
+    return chkResult;
+  }
+  */
 
   this.getNum = function (input) {
     var result;
-
+    console.log("getNum")
+    //find index of last number and 0, index splice/slice it
     return result;
   };
 
   this.getUnit = function (input) {
     var result;
-
+    //find index of last number and index, length splice/slice it
     return result;
   };
 
   this.getReturnUnit = function (initUnit) {
-    var result;
-
-    return result;
+    var resultUnit;
+    switch (initUnit) {
+      case 'gal':
+        resultUnit = L;
+        break;
+      case 'lbs':
+        resultUnit = kg;
+        break;
+      case 'mi':
+        resultUnit = km
+        break;
+    }
+    return resultUnit;
   };
 
   this.spellOutUnit = function (unit) {
