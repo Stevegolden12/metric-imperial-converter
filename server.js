@@ -30,11 +30,22 @@ app.route('/')
     res.sendFile(process.cwd() + '/views/index.html');
   });
 
+/********************************************************************
+ *  Figure out why convertHandler methods are not being recognize
+ * ******************************************************************/
 //Get number
+var cH = new convertHandler;
+
 app.route('/api/convert')
   .get(function (req, res) {
     const qInput = req.query.input;
-    console.log(convertHandler.getNum())
+    console.log("checkInput: " + cH.chkInput(qInput))
+    console.log("getNum: " + cH.getNum(qInput))
+    console.log("getUnit: " + cH.getUnit(qInput))
+    const ggUnit = cH.getUnit(qInput)
+    const rrUnit = cH.getReturnUnit(ggUnit)
+    console.log("spell out units: " + cH.spellOutUnit(rrUnit))
+
     res.send('TESTING')
   })
 
