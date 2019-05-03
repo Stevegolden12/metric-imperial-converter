@@ -41,11 +41,12 @@ app.route('/api/convert')
     const qInput = req.query.input;
     console.log("checkInput: " + cH.chkInput(qInput))
     console.log("getNum: " + cH.getNum(qInput))
+    const nnUnit = cH.getNum(qInput);
     console.log("getUnit: " + cH.getUnit(qInput))
     const ggUnit = cH.getUnit(qInput)
     const rrUnit = cH.getReturnUnit(ggUnit)
     console.log("spell out units: " + cH.spellOutUnit(rrUnit))
-
+    console.log("Numeral response is: " + cH.convert(nnUnit, ggUnit))
     res.send('TESTING')
   })
 
