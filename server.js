@@ -1,4 +1,4 @@
-'use strict';
+'use strict'; 
 
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -38,15 +38,23 @@ var cH = new convertHandler;
 
 app.route('/api/convert')
   .get(function (req, res) {
-    const qInput = req.query.input;
-    console.log("checkInput: " + cH.chkInput(qInput))
-    console.log("getNum: " + cH.getNum(qInput))
-    const nnUnit = cH.getNum(qInput);
-    console.log("getUnit: " + cH.getUnit(qInput))
-    const ggUnit = cH.getUnit(qInput)
-    const rrUnit = cH.getReturnUnit(ggUnit)
-    console.log("spell out units: " + cH.spellOutUnit(rrUnit))
-    console.log("Numeral response is: " + cH.convert(nnUnit, ggUnit))
+    const queryInput = req.query.input;
+    console.log(cH.chkInput(queryInput))
+    //
+    //Testing below code need to make sure that the unit is within our specifications
+
+    const queryUnit = cH.getUnit(queryInput)
+    const unitResponse = cH.chkUnit(cH.getUnit, queryUnit)
+    const valResponse = cH.chkNum(queryInput)
+
+    const queryNum = cH.getNum(queryInput);
+
+    console.log("Is the unit correct? " + unitResponse)
+    console.log("Is the number correct? " + valResponse)
+  
+    const convertedUnit = cH.getReturnUnit(queryUnit)
+    console.log("spell out units: " + cH.spellOutUnit(queryUnit) + " and " + cH.spellOutUnit(convertedUnit))
+    console.log("Numeral response is: " + cH.convert(queryNum, queryUnit))
     res.send('TESTING')
   })
 
