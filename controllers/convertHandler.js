@@ -18,8 +18,11 @@ function ConvertHandler() {
     //find index of last number and 0, index splice/slice it
     const regCharIndex = /[a-zA-z]+/
     const fIndex = input.search(regCharIndex);
-    const gNum = input.substring(0,fIndex);
-    return gNum;
+    var gNum = input.substring(0, fIndex);
+     if (gNum === '') {
+      gNum = '1';
+    }
+     return gNum;
   };
 
   this.getUnit = function (input) {
@@ -33,7 +36,7 @@ function ConvertHandler() {
   this.chkUnit = function (getUnit, input) {
     const validUnits = ['gal','lbs','mi','l','kg','km'];
     const chkUnit = getUnit(input);
-    console.log('Wanted Units ' + chkUnit)
+
     if (validUnits.includes(chkUnit)) {
       return true;
     } else {
@@ -42,10 +45,8 @@ function ConvertHandler() {
   }
 
   this.chkNum = function (input) {
-    const regCharIndex = /[a-zA-z]+/
-    const lIndex = input.search(regCharIndex);
-    const chkNum = input.substring(0, lIndex);
-    if (!isNaN(chkNum) && chkNum !== '') {
+
+    if (!isNaN(input)) {
       return true;
     } else {
       return false;
@@ -64,7 +65,7 @@ function ConvertHandler() {
       case 'mi':
         resultUnit = 'km';
         break;
-      case 'L':
+      case 'l':
         resultUnit = 'gal';
         break;
       case 'kg':
@@ -73,8 +74,7 @@ function ConvertHandler() {
       case 'km':
         resultUnit = 'mi';
         break;
-    }
-    console.log("resultUnit: " + resultUnit)
+    } 
     return resultUnit;
   };
 
@@ -90,7 +90,7 @@ function ConvertHandler() {
       case 'mi':
         sOutUnit = 'mile(s)';
         break;
-      case 'L':
+      case 'l':
         sOutUnit = 'liter(s)';
         break;
       case 'kg':
@@ -111,7 +111,7 @@ function ConvertHandler() {
 
 
     switch (initUnit) {
-      case 'gal':
+      case 'gal':  
         convUnit = galToL;
         break;
       case 'L':
@@ -130,15 +130,23 @@ function ConvertHandler() {
         convUnit = 1/miToKm;
         break;
     }
-   console.log("The result with number and unit should be: " + (initNum * convUnit))
-
     return initNum * convUnit;
   };
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
-    var result;
-    
-    return result;
+    const initUnitFull = this.spellOutUnit(initUnit);
+    const returnUnitFull = this.spellOutUnit(returnUnit);
+
+    var stringObj = {
+      initNum: initNum,
+      initUnit: initUnit,
+      returnNum: returnNum,
+      returnUnit: returnUnit,
+      string: initNum + ' ' + initUnitFull + ' converts to ' + returnNum.toFixed(5) + ' ' + returnUnitFull
+    }
+
+     
+    return stringObj;
   };
 
 }

@@ -39,23 +39,32 @@ var cH = new convertHandler;
 app.route('/api/convert')
   .get(function (req, res) {
     const queryInput = req.query.input;
-    console.log(cH.chkInput(queryInput))
-    //
+
     //Testing below code need to make sure that the unit is within our specifications
 
     const queryUnit = cH.getUnit(queryInput)
-    const unitResponse = cH.chkUnit(cH.getUnit, queryUnit)
-    const valResponse = cH.chkNum(queryInput)
-
-    const queryNum = cH.getNum(queryInput);
-
-    console.log("Is the unit correct? " + unitResponse)
-    console.log("Is the number correct? " + valResponse)
+    const queryNum = Number(cH.getNum(queryInput))
+    const unitCheck = cH.chkUnit(cH.getUnit, queryUnit)
+    const valCheck = cH.chkNum(queryNum)   
   
-    const convertedUnit = cH.getReturnUnit(queryUnit)
-    console.log("spell out units: " + cH.spellOutUnit(queryUnit) + " and " + cH.spellOutUnit(convertedUnit))
-    console.log("Numeral response is: " + cH.convert(queryNum, queryUnit))
-    res.send('TESTING')
+    const convertedUnit = cH.getReturnUnit(queryUnit);
+    const convertedNum = cH.convert(queryNum, queryUnit);
+
+    if (unitCheck && valCheck) {
+      const results = cH.getString(queryNum, queryUnit, convertedNum, convertedUnit);
+      res.json(results);
+
+    } else {
+      const errResponse = [];
+      if (valCheck === false) {
+        errResponse.push("\"" + cH.getNum(queryInput) + "\" is not a number")
+      }
+      if (unitCheck === false) {
+        errResponse.push("\"" + queryUnit + "\" is not a valid unit")
+      }
+      res.send(errResponse.join(' and '))
+    }
+   
   })
 
 //For FCC testing purposes
