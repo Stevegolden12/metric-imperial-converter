@@ -15,7 +15,6 @@ function ConvertHandler() {
   }
  
   this.getNum = function (input) {
-    var result;
     //find index of last number and 0, index splice/slice it
     const regCharIndex = /[a-zA-z]+/
     const fIndex = input.search(regCharIndex);
@@ -24,13 +23,34 @@ function ConvertHandler() {
   };
 
   this.getUnit = function (input) {
-    var result;
     //find index of last number and index, length splice/slice it
     const regCharIndex = /[a-zA-z]+/
     const lIndex = input.search(regCharIndex);
     const gUnit = input.substring(lIndex, input.length);
     return gUnit;
   };
+
+  this.chkUnit = function (getUnit, input) {
+    const validUnits = ['gal','lbs','mi','l','kg','km'];
+    const chkUnit = getUnit(input);
+    console.log('Wanted Units ' + chkUnit)
+    if (validUnits.includes(chkUnit)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  this.chkNum = function (input) {
+    const regCharIndex = /[a-zA-z]+/
+    const lIndex = input.search(regCharIndex);
+    const chkNum = input.substring(0, lIndex);
+    if (!isNaN(chkNum) && chkNum !== '') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   this.getReturnUnit = function (initUnit) {
     var resultUnit = '';
@@ -43,6 +63,15 @@ function ConvertHandler() {
         break;
       case 'mi':
         resultUnit = 'km';
+        break;
+      case 'L':
+        resultUnit = 'gal';
+        break;
+      case 'kg':
+        resultUnit = 'lbs';
+        break;
+      case 'km':
+        resultUnit = 'mi';
         break;
     }
     console.log("resultUnit: " + resultUnit)
@@ -108,7 +137,7 @@ function ConvertHandler() {
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
     var result;
-
+    
     return result;
   };
 
