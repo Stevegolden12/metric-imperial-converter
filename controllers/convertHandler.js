@@ -7,9 +7,16 @@
 */
 
 function ConvertHandler() {
+
+  this.chkSlash = function (input) {
+    const slashTest = /(^[0-9]+)(\/)([0-9]+$)/gm
+    const chkSlash = slashTest.test(input)
+    console.log("inside chkSlash: " + input)
+    return chkSlash
+  }
   
-  this.chkInput = function (input) {
-    const regTest = /(^[0-9]{1,})(\.?)([0 9]{0,})([a-zA-z]{2,3})/gm
+  this.chkInput = function (input) { 
+    const regTest = /(^[0-9]{1,})(\.?)([0 9]{0,})([a-zA-z]{2,3})/gm  
     const chkResult = regTest.test(input)
     return chkResult;
   }
@@ -45,8 +52,9 @@ function ConvertHandler() {
   }
 
   this.chkNum = function (input) {
-
-    if (!isNaN(input)) {
+    console.log("chkNum input: " + input)
+    console.log("chkSlash is: " + this.chkSlash(input))
+    if (!isNaN(input) && chkSlash(input)) {
       return true;
     } else {
       return false;
