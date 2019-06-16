@@ -38,13 +38,14 @@ var cH = new convertHandler;
 
 app.route('/api/convert')
   .get(function (req, res) {
-    const queryInput = req.query.input;
-
+    const queryInput = req.query.input;   
     //Testing below code need to make sure that the unit is within our specifications
 
-    const queryUnit = cH.getUnit(queryInput)
+    const queryUnit = cH.getUnit(queryInput)  
+   //cH.getNum(queryInput)) gets the input but the Number function surrounding it makes it NaN for 4/5 issues
     const queryNum = Number(cH.getNum(queryInput))
-    const unitCheck = cH.chkUnit(cH.getUnit, queryUnit)
+
+    const unitCheck = cH.chkUnit(cH.getUnit, queryUnit)   
     const valCheck = cH.chkNum(queryNum)   
   
     const convertedUnit = cH.getReturnUnit(queryUnit);
