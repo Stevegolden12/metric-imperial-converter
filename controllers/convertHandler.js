@@ -156,7 +156,7 @@ function ConvertHandler() {
     var stringObj = {
       initNum: initNum,
       initUnit: initUnit,
-      returnNum: returnNum,
+      returnNum: returnNum.toFixed(5),
       returnUnit: returnUnit,
       string: initNum + ' ' + initUnitFull + ' converts to ' + returnNum.toFixed(5) + ' ' + returnUnitFull
     }
