@@ -10,9 +10,14 @@ function ConvertHandler() {
 
   this.chkSlash = function (input) {
     const slashTest = /(^[0-9]+)(\/)([0-9]+$)/gm
-    const chkSlash = slashTest.test(input)
-    console.log("inside chkSlash: " + input)
+    const chkSlash = slashTest.test(input)  
     return chkSlash
+  }
+
+  this.calSlash = function (input) { 
+    const calNum = input.split("/")
+    const slashNum = calNum[0] / calNum[1]
+    return slashNum
   }
   
   this.chkInput = function (input) { 
@@ -22,13 +27,18 @@ function ConvertHandler() {
   }
  
   this.getNum = function (input) {
-    //find index of last number and 0, index splice/slice it
+    //find index of last number and 0, index splice/slice it  
+ 
     const regCharIndex = /[a-zA-z]+/
     const fIndex = input.search(regCharIndex);
     var gNum = input.substring(0, fIndex);
      if (gNum === '') {
       gNum = '1';
     }
+
+    if (this.chkSlash(gNum)) {     
+      gNum = this.calSlash(gNum)
+    } 
      return gNum;
   };
 
@@ -52,9 +62,7 @@ function ConvertHandler() {
   }
 
   this.chkNum = function (input) {
-    console.log("chkNum input: " + input)
-    console.log("chkSlash is: " + this.chkSlash(input))
-    if (!isNaN(input) && chkSlash(input)) {
+    if (!isNaN(input)) {
       return true;
     } else {
       return false;
