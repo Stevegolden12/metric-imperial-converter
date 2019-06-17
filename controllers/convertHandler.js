@@ -51,7 +51,7 @@ function ConvertHandler() {
   };
 
   this.chkUnit = function (getUnit, input) {
-    const validUnits = ['gal','lbs','mi','l','kg','km'];
+    const validUnits = ['gal','lbs','mi','L','kg','km'];
     const chkUnit = getUnit(input);
 
     if (validUnits.includes(chkUnit)) {
