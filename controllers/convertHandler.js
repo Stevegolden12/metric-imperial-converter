@@ -9,7 +9,7 @@
 function ConvertHandler() {
 
   this.chkSlash = function (input) {
-    const slashTest = /(^[0-9]+)(\/)([0-9]+$)/gm
+    const slashTest = /(^[0-9]+)(\.[0-9]+)?(\/)([0-9]+$)(\.[0-9]+)?/gm
     const chkSlash = slashTest.test(input)  
     return chkSlash
   }
@@ -17,6 +17,7 @@ function ConvertHandler() {
   this.calSlash = function (input) { 
     const calNum = input.split("/")
     const slashNum = calNum[0] / calNum[1]
+
     return slashNum
   }
   
@@ -35,7 +36,7 @@ function ConvertHandler() {
      if (gNum === '') {
       gNum = '1';
     }
-
+    console.log("gNum: " + gNum)
     if (this.chkSlash(gNum)) {     
       gNum = this.calSlash(gNum)
     } 
