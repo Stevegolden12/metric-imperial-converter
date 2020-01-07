@@ -1,7 +1,16 @@
-**FreeCodeCamp**- Information Security and Quality Assurance
-------
+# Metric Imperial Converter
 
-1) SET NODE_ENV to `test` without quotes
-2) Most logic will need done in `controllers/convertHandler.js` but do complete `routes/api.js`
-3) You will add any security features to `server.js`
-4) You will create all of the functional/unit tests in `tests/2_functional-tests.js` and `tests/1_unit-tests.js`
+Metric imperial converter app using Express, MongoDB, and Mongoose with HTML , CSS, and JavaScript.  Part of freeCodeCamp Information Security and Quality Assurance certificate projects.
+
+## Installation
+
+Download the files [here](https://github.com/Stevegolden12/metric-imperial-converter)
+In the main folder in the command line type: 'nodemon server.js'
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## Acknowledgement
+
+Thank you to Freecodecamp.org for helping me learn the Express, MongoDB, and Mongoose
